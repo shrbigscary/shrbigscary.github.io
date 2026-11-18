@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+<img hidden src="dino.png" alt="" width="50" height="60" id="dino">
+<img hidden src="bgg.jpg" alt="white" width="1133" height="1350" id="bg">
+<img hidden src="https://www.tynker.com/projects/images/e20df433a4316a7c308b11da2fcdb32d432598f4/cacti---cacti2.png" alt="" id="cactus">
+<canvas id="myCanvas" width="1335" height="500" style="border:1px solid #000000;"></canvas>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+var bg = document.getElementById("bg");
+var dino = document.getElementById("dino");
+var cactus = document.getElementById("cactus");
+document.addEventListener("keydown", dinojump);
+
+var x = 1;
+var y = 300;
+var dinoX = 20;
+var boxX = 800;
+var speed = 0;
+
+function guh() {
+    ctx.clearRect(0, 0, 2000, 2000);
+    ctx.drawImage(bg, x, 5, 1075, 490);
+    ctx.drawImage(bg, x + 1130, 5, 1075, 490);
+
+    ctx.drawImage(cactus, boxX, 340, 50, 60);
+
+    ctx.drawImage(dino, dinoX, y, 100, 100);
+
+    x = x - 2;
+    if (x <= -1130) {
+        x = 0;
+    }
+
+    boxX = boxX - 2;
+    if (boxX < -50) {
+        boxX = 1400;
+    }
+}
+
+function dinojump() {
+    if (y >= 300) {
+        speed = 15;
+    }
+}
+
+function fall() {
+    y = y - speed;
+    speed = speed - 0.6;
+    if (y >= 300) {
+        y = 300;
+        speed = 0;
+    }
+}
+
+window.onload = function() {
+    setInterval(guh, 1000 / 60);
+    setInterval(fall, 1000 / 60);
+}
+</script>
+</body>
+</html>

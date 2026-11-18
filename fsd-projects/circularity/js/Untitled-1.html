@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Box Canvas</title>
+</head>
+
+<body>
+
+    <h1>Bouncing Box Animation Thing</h1>
+    <p><a href="portfolio.html">Back to Portfolio</a></p>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+    </canvas>
+   <script>
+
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    let x = 370;
+    let y = 200;
+    let height = 125;
+    let width = 120;
+
+    let directionx = 1;
+    let directiony = 1;
+
+    setInterval(update, 7);
+
+    function update() {
+        ctx.clearRect(0, 0, 500, 500);
+        ctx.fillStyle = "black";
+        ctx.fillRect(x, y, width, height);
+
+        x = x + directionx;
+        if (x + width >= 500) {
+            directionx = -1;
+        } else if (x <= 0) {
+            directionx = 1;
+        }
+
+        y = y + directiony;
+        if (y + height >= 500) {
+            directiony = -1;
+        } else if (y <= 0) {
+            directiony = 1;
+        }
+    }
+</script>
+</body>
+
+</html>
